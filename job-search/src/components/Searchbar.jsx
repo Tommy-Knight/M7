@@ -1,15 +1,23 @@
 import React, { Component } from "react"
 import { Container, Button, Spinner, Row, Card, Col } from "react-bootstrap"
 
-export default class Searchbar extends Component {
+import { connect } from 'react-redux'
+
+import { addToFavourites } from '../actions'
+
+const mapStateToProps = state => state
+
+const mapDispatchToProps = (dispatch) => ({
+  addToCart: (job) => {
+    dispatch(addToFavourites(job))
+  }
+})
+
+class Searchbar extends Component {
 	state = {
 		searchInput: "",
 		loading: false,
 		data: {},
-	}
-
-	saveSearchInput = async (e) => {
-		this.setState({ searchInput: e.target.value })
 	}
 
 	fetchAll = async () => {
@@ -21,10 +29,14 @@ export default class Searchbar extends Component {
 			const data = await resp.json()
 			this.setState({ loading: false })
 			this.setState({ data })
-			console.log(this.state.searchInput, "search returns", this.state.data)
+			console.log(this.state.searchInput, `search returns`, this.state.data)
 		} catch (error) {
 			console.log(error)
 		}
+	}
+
+	addFav = (id) => {
+		console.log(id.target.checked)
 	}
 
 	render() {
@@ -38,26 +50,30 @@ export default class Searchbar extends Component {
 					e=""
 					className="m-2"
 					onChange={(e) => {
-						this.saveSearchInput(e)
+						this.setState({ searchInput: e.target.value })
 					}}
 				/>
 				{/* loading button */}
+				<div className="btn-group">
 				{this.state.loading ? (
-					<Button variant="dark" disabled>
-						<Spinner
-							as="span"
-							animation="border"
-							size="sm"
-							role="status"
-							aria-hidden="true"
-						/>
-						<span className=""> Searching...</span>
-					</Button>
-				) : (
-					<Button variant="dark" onClick={this.fetchAll}>
-						<span className="">Search</span>
-					</Button>
-				)}
+						<Button variant="dark" disabled>
+							<Spinner
+								as="span"
+								animation="border"
+								size="sm"
+								role="status"
+								aria-hidden="true"
+							/>
+							<span className=""> Searching...</span>
+						</Button>
+					) : (
+						<Button variant="dark" onClick={this.fetchAll}>
+							<span className="">Search</span>
+						</Button>
+					)}<Button style={{display:"inline-block"}} variant="dark" onClick="">
+							<span className="">Favourites</span>
+						</Button>
+					</div>
 				{/* Mapping job cards */}
 				<Container className="center">
 					<Row>
@@ -84,6 +100,15 @@ export default class Searchbar extends Component {
 											<Card.Link href={"/" + job.company_name}>
 												{job.company_name}
 											</Card.Link>
+											<br/>
+
+											<span>
+												<input type="checkbox" id={job.id} name="favourites" value={job.id} onClick={(e) => {
+						this.addFav(e)
+					}}/>
+												        Favourite
+											</span>
+
 										</Card.Body>
 									</Card>
 								</Col>
@@ -94,3 +119,4 @@ export default class Searchbar extends Component {
 		)
 	}
 }
+export default connect(mapStateToProps, mapDispatchToProps)(Searchbar);
