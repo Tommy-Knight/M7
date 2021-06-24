@@ -4,13 +4,17 @@ import { Container, Button, Spinner, Row, Card, Col } from "react-bootstrap"
 import { connect } from 'react-redux'
 
 import { addToFavourites } from '../actions'
+import {fetchAll} from '../actions'
 
-const mapStateToProps = state => state
+const mapStateToProps = cheesetoastie => cheesetoastie
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (job) => {
+  addFav: (job) => {
     dispatch(addToFavourites(job))
-  }
+  },
+  fetchJobs: (job =>{
+	  dispatch(fetchAll(job))
+  })
 })
 
 class Searchbar extends Component {
@@ -35,8 +39,9 @@ class Searchbar extends Component {
 		}
 	}
 
-	addFav = (id) => {
-		console.log(id.target.checked)
+	handleCheck = (id) => {
+		this.props.addFav(id.target.value)
+		this.props.fetchJobs(this.state.data)
 	}
 
 	render() {
@@ -70,7 +75,7 @@ class Searchbar extends Component {
 						<Button variant="dark" onClick={this.fetchAll}>
 							<span className="">Search</span>
 						</Button>
-					)}<Button style={{display:"inline-block"}} variant="dark" onClick="">
+					)}<Button style={{display:"inline-block"}} variant="dark" onClick={()=>{}} >
 							<span className="">Favourites</span>
 						</Button>
 					</div>
@@ -103,8 +108,8 @@ class Searchbar extends Component {
 											<br/>
 
 											<span>
-												<input type="checkbox" id={job.id} name="favourites" value={job.id} onClick={(e) => {
-						this.addFav(e)
+												<input type="checkbox" id={job.id} name="favourites" value={job.company_name} onClick={(e) => {
+						this.handleCheck(e)
 					}}/>
 												        Favourite
 											</span>
