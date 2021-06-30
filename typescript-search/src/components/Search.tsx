@@ -1,10 +1,11 @@
-import React, { ChangeEvent } from "react"
+import React, { ChangeEvent, useState } from "react"
 import { RouteComponentProps } from "react-router-dom"
-import SearchResultsComponent from "./SearchResultsComponent"
+import {SearchResultsComponent} from "./SearchResultsComponent"
 
-const Search = (props: RouteComponentProps) => {
-	const [searchValue, setSearchValue] = React.useState<string>("")
-	const [searchResult, setSearchResult] = React.useState<string[] | undefined>(undefined)
+export const Search = (props: RouteComponentProps) => {
+
+	const [searchValue, setSearchValue] = useState<string>("")
+	const [searchResult, setSearchResult] = useState< undefined>(undefined)
 
 	const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -15,7 +16,7 @@ const Search = (props: RouteComponentProps) => {
 			)
 
 			const data = await result.json()
-			console.log(data)
+			console.log(data.data)
 			setSearchResult(data)
 
 		} catch (error) {
@@ -40,9 +41,8 @@ const Search = (props: RouteComponentProps) => {
 
 			</form>
 
-			{searchResult ? <SearchResultsComponent {...searchResult} /> :null}
+			{searchResult && <SearchResultsComponent {...searchResult} /> }
 		</>
 	)
 }
 
-export default Search
