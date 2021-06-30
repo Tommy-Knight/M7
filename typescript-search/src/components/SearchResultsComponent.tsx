@@ -1,6 +1,6 @@
-import {searchResultInterface} from "../interfaces/index"
+import { searchResultInterface } from "../interfaces/index"
 
-// export default function SearchResults(searchResult:searchResul) {
+// export default function SearchResults(searchResult:any) {
 //     return (
 //         <div>
 //             {searchResult.data.map((item:any) => {
@@ -9,13 +9,19 @@ import {searchResultInterface} from "../interfaces/index"
 //         </div>
 //     )
 // }
-
-
 const SearchResultsComponent = (searchResult: any) =>
 	searchResult.data.map((item: any) => {
-		return <b key={item.id}>{item.title}<br/></b>
+		
+		return (
+			<div>
+				<b key={item.id}>
+					<img alt="" src={item.album.cover_small} />
+					{item.title}
+					<br />
+					<hr />
+				</b>
+			</div>
+		)
 	})
 
 export default SearchResultsComponent
-
-

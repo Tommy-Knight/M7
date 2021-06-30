@@ -6,11 +6,13 @@ import Search from "./components/Search"
 class App extends React.Component {
     render() {
         return (
+
             <Router>
                 <Switch>
-                    <Route exact path="/" render={routeProps => <Search {...routeProps} />} />
+                    <Route path="/" render={routeProps => <Search {...routeProps} />}/>
                 </Switch>
             </Router>
+
         )
     }
 }

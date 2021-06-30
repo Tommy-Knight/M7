@@ -41,5 +41,5 @@ export interface searchResultInterface {
 			type: string
 			md5_image: string
 		}
-	]
+    ]
 }

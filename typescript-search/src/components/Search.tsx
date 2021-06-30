@@ -26,17 +26,21 @@ const Search = (props: RouteComponentProps) => {
 	return (
 		<>
 			<form onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSearch(e)}>
+
 				<input
 					type="text"
-					placeholder="Search For Something"
+					placeholder="🎼 La La La "
 					value={searchValue}
 					onChange={(e: ChangeEvent<HTMLInputElement>) => {
 						setSearchValue(e.target.value)
 					}}
 				/>
-				<button type="submit">POW</button>
+
+				<button type="submit">🔥 POW 🔥</button>
+                
 			</form>
-			{searchResult && <SearchResultsComponent {...searchResult} />}
+
+			{searchResult ? <SearchResultsComponent {...searchResult} /> :null}
 		</>
 	)
 }
