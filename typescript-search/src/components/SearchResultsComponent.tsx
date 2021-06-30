@@ -11,10 +11,10 @@ import { searchResultInterface } from "../interfaces/index"
 // }
 const SearchResultsComponent = (searchResult: any) =>
 	searchResult.data.map((item: any) => {
-		
+
 		return (
-			<div>
-				<b key={item.id}>
+			<div key={item.id}>
+				<b>
 					<img alt="" src={item.album.cover_small} />
 					{item.title}
 					<br />

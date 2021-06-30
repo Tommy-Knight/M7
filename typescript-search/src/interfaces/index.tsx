@@ -1,5 +1,5 @@
 export interface searchResultInterface {
-	data: [
+	data: [{
 		id: number,
 		readable: boolean,
 		title: string,
@@ -41,5 +41,5 @@ export interface searchResultInterface {
 			type: string
 			md5_image: string
 		}
-    ]
+    }]
 }

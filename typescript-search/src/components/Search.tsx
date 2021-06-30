@@ -29,7 +29,7 @@ const Search = (props: RouteComponentProps) => {
 
 				<input
 					type="text"
-					placeholder="🎼 La La La "
+					placeholder=" La La La "
 					value={searchValue}
 					onChange={(e: ChangeEvent<HTMLInputElement>) => {
 						setSearchValue(e.target.value)
@@ -37,7 +37,7 @@ const Search = (props: RouteComponentProps) => {
 				/>
 
 				<button type="submit">🔥 POW 🔥</button>
-                
+
 			</form>
 
 			{searchResult ? <SearchResultsComponent {...searchResult} /> :null}
