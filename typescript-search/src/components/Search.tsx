@@ -1,25 +1,23 @@
 import React, { ChangeEvent } from "react"
 import { RouteComponentProps } from "react-router-dom"
-import SearchResults from "./SearchResults"
+import SearchResultsComponent from "./SearchResultsComponent"
 
 const Search = (props: RouteComponentProps) => {
 	const [searchValue, setSearchValue] = React.useState<string>("")
-	const [searchResult, setSearchResult] = React.useState<object | undefined>(
-		undefined
-	)
+	const [searchResult, setSearchResult] = React.useState<string[] | undefined>(undefined)
 
 	const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+
 		try {
 			const result = await fetch(
-				"https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
-					searchValue
+				"https://striveschool-api.herokuapp.com/api/deezer/search?q="+searchValue
 			)
-			if (result.ok) {
-				const data = await result.json()
-                console.log(data)
-				setSearchResult(data)
-			} else throw new Error("Failed to fetch")
+
+			const data = await result.json()
+			console.log(data)
+			setSearchResult(data)
+
 		} catch (error) {
 			console.error(error)
 		}
@@ -27,24 +25,18 @@ const Search = (props: RouteComponentProps) => {
 
 	return (
 		<>
-			<div className="App">
-				<header className="App-header">
-					<form
-						onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSearch(e)}
-					>
-						<input
-							type="text"
-							placeholder="Search..."
-							value={searchValue}
-							onChange={(e: ChangeEvent<HTMLInputElement>) => {
-								setSearchValue(e.target.value)
-							}}
-						/>
-						<button type="submit">Search</button>
-					</form>
-					{searchResult && <SearchResults {...searchResult} />}
-				</header>
-			</div>
+			<form onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSearch(e)}>
+				<input
+					type="text"
+					placeholder="Search For Something"
+					value={searchValue}
+					onChange={(e: ChangeEvent<HTMLInputElement>) => {
+						setSearchValue(e.target.value)
+					}}
+				/>
+				<button type="submit">POW</button>
+			</form>
+			{searchResult && <SearchResultsComponent {...searchResult} />}
 		</>
 	)
 }
