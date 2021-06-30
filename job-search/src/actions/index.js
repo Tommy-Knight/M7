@@ -1,6 +1,3 @@
-// here I write my action creators
-// functions that return actions
-
 export const addToFavourites = (favourite) => {
 	return {
 		type: "ADD_TO_FAVOURITES",
@@ -16,7 +13,7 @@ export const fetchAll = () => {
 				payload: true,
 			})
 			let resp = await fetch("https://remotive.io/api/remote-jobs?search=")
-			console.log(getState())
+			console.log("state is", getState())
 			if (resp.ok) {
 				let jobs = await resp.json()
 				dispatch({

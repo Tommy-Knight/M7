@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class CompanyDetails extends Component {
+const mapStateToProps = cheesetoastie => cheesetoastie
 
-componentDidMount() {
+class CompanyDetails extends Component {
 
-}
     render() {
         return (<div className="App-header">
             {this.props.match.params.id} is great
         </div>)
     }
 }
+export default connect(mapStateToProps)(CompanyDetails);

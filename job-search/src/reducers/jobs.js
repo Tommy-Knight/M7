@@ -5,7 +5,7 @@ const jobReducer = (state = initialState, action) => {
     case 'GET_JOBS':
       return {
         ...state,
-        stock: action.payload,
+        fetchJobs: action.payload,
       }
 
     case 'SET_ERROR':
