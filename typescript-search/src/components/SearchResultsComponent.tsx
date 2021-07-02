@@ -1,4 +1,5 @@
 import { searchResultData, searchResultInterface } from "../interfaces/index";
+import {Link} from "react-router-dom"
 
 export const SearchResultsComponent = (searchResult: searchResultData) => {
 	return (
@@ -8,7 +9,7 @@ export const SearchResultsComponent = (searchResult: searchResultData) => {
 					<div key={item.id}>
 						<img alt='' src={item.album.cover_small} />
 						<b>{item.title} </b>
-						<small> by {item.artist.name}</small>
+						<small> by {item.artist.name}</small> 
 						<br />
 						<hr />
 					</div>
