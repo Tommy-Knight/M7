@@ -1,15 +1,35 @@
-import * as React from 'react';
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import {favouritesReducer} from "./reducer";
+import thunk from "redux-thunk";
 
-export interface IAppProps {
-}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export function App (props: IAppProps) {
-  return (
-    <div>
-      
-    </div>
-  );
-}
+export const initialState = {
+	favourites: {
+	}
+};
+
+const rootReducer = combineReducers({
+	favourites: favouritesReducer
+});
+
+const configureStore = () =>
+	createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(thunk)));
+
+export default configureStore;
+
+// import * as React from 'react';
+
+// export interface IAppProps {
+// }
+
+// export function App (props: IAppProps) {
+//   return (
+//     <div>
+
+//     </div>
+//   );
+// }
 
 // ./src/store/index.ts
 
@@ -43,7 +63,6 @@ export function App (props: IAppProps) {
 
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-
 // export const initialState = {
 //   favourites: [],
 //   jobs: []
@@ -59,40 +78,7 @@ export function App (props: IAppProps) {
 
 // export default configureStore
 
-
 //////////////////////////////////////////////////////////////
-// import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-// import favouritesReducer from "../reducers/favourites";
-// import playlistReducer from "../reducers/playlist";
-// import thunk from "redux-thunk";
-
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-// export const initialState = {
-// 	favourites: {
-// 		songs: [],
-// 	},
-// 	currentPlaylist: {
-// 		songs: [],
-// 		currentSong: {
-// 			title: "",
-// 			artist: {
-// 				name: "",
-// 			},
-// 		},
-// 		cover: "https://developer.spotify.com/assets/branding-guidelines/icon4@2x.png",
-// 	},
-// };
-
-// const rootReducer = combineReducers({
-// 	favourites: favouritesReducer,
-// 	currentPlaylist: playlistReducer,
-// });
-
-// const configureStore = () =>
-// 	createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(thunk)));
-
-// export default configureStore;
 
 ///////////////////////////////////////////////////////////////////////////////
 

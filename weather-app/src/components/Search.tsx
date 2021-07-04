@@ -5,19 +5,24 @@ import { Weather } from "./Weather";
 export default function Search(props: RouteComponentProps) {
 	const [searchValue, setSearchValue] = useState<string>("");
 	const [searchResult, setSearchResult] = useState<any | undefined>(undefined);
+	const [error, setError] = useState<boolean>(false);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		try {
+			setIsLoading(true);
 			const result = await fetch(
-				"https://striveschool-api.herokuapp.com/api/deezer/search?q=" + searchValue
+				`http://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=9d33c3e69026b25a6cab7f300ec5e461`
 			);
 
 			const data = await result.json();
-			console.log(data.data);
+			console.log("response", data);
 			setSearchResult(data);
+			setIsLoading(false);
 		} catch (error) {
+			setError(true)
 			console.error(error);
 		}
 	};
@@ -59,7 +64,7 @@ export default function Search(props: RouteComponentProps) {
 					🔥 POW 🔥
 				</button>
 			</form>
-			{}
+			{isLoading && <div>we loading baby</div>}
 			{searchResult && <Weather {...searchResult} />}
 		</>
 	);
