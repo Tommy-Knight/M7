@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./style/App.css";
+import "./style/App.scss";
 import Search from "./components/Search"
 
 class App extends React.Component {
