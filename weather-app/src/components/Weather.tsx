@@ -10,6 +10,7 @@ export const Weather = (searchResult: any) => {
 				<b>{searchResult.weather[0].main} </b>
 				<small> lots of <i>{searchResult.weather[0].description}</i></small>
 				<hr />
+	
 			</div>
 		</div>
 	);

@@ -10,6 +10,16 @@ class App extends React.Component {
 				<Switch>
 					<Route path='/' render={(routeProps) => <Search {...routeProps} />} />
 				</Switch>
+					<div className='star'>
+						<div className='stars'></div>
+						<div className='stars'></div>
+						<div className='stars'></div>
+						<div className='stars'></div>
+						<div className='stars'></div>
+						<div className='stars'></div>
+						<div className='stars'></div>
+						<div className='stars'></div>
+					</div>
 			</Router>
 		);
 	}

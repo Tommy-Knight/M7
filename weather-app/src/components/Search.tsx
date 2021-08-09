@@ -22,13 +22,14 @@ export default function Search(props: RouteComponentProps) {
 			setSearchResult(data);
 			setIsLoading(false);
 		} catch (error) {
-			setError(true)
+			setError(true);
 			console.error(error);
 		}
 	};
 
 	return (
 		<>
+			
 			<form className='App' onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSearch(e)}>
 				<input
 					type='text'

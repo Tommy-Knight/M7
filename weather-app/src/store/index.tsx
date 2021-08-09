@@ -1,22 +1,36 @@
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import {favouritesReducer} from "./reducer";
-import thunk from "redux-thunk";
+import * as React from 'react';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export interface IAppProps {
+}
 
-export const initialState = {
-	favourites: {
-	}
-};
+export function App (props: IAppProps) {
+  return (
+	<div>
+	  
+	</div>
+  );
+}
 
-const rootReducer = combineReducers({
-	favourites: favouritesReducer
-});
 
-const configureStore = () =>
-	createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(thunk)));
+// import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+// import {favouritesReducer} from "./reducer";
+// import thunk from "redux-thunk";
 
-export default configureStore;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+// export const initialState = {
+// 	favourites: {
+// 	}
+// };
+
+// const rootReducer = combineReducers({
+// 	favourites: favouritesReducer
+// });
+
+// const configureStore = () =>
+// 	createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(thunk)));
+
+// export default configureStore;
 
 // import * as React from 'react';
 

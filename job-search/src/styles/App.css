@@ -12,3 +12,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.hoverme:hover{
+ box-shadow: 3px 6px 15px 0px #181A1F;
+}
