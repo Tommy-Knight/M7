@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Container, Row, Card, Col } from "react-bootstrap";
-import {formatDistanceToNow} from "date-fns"
+import { formatDistanceToNow } from "date-fns";
 
 class CompanyDetails extends Component {
 	state = {
-		data: null,
+		data: {},
 	};
 
 	componentDidMount() {
@@ -22,18 +22,20 @@ class CompanyDetails extends Component {
 		} catch (error) {
 			console.log(error);
 		}
-	};  
+	};
 
 	render() {
 		return (
 			<div className='App-header'>
 				<h4>
-				    {this.props.match.params.id} is great!
+					{this.props.match.params.id} is great!
+					<br />
+					They're currently hiring in {this.state.data["job-count"] ? this.state.data["job-count"] : 0} position(s)!
 				</h4>
-                    <br/>
+				<br />
 				<Container className='center'>
-						{this.state.data?.jobs.map((job) => (
-					<Row>
+					{this.state.data.jobs?.map((job) => (
+						<Row>
 							<Col key={job.id}>
 								<Card
 									className='bg-dark mb-2 hoverme'
@@ -48,29 +50,16 @@ class CompanyDetails extends Component {
 											<b>{job.title}</b>
 										</Card.Text>
 										<Card.Subtitle className='mb-2 text-muted'>
-											{this.props.match.params.id} posted this {formatDistanceToNow(new Date(job.publication_date))} ago
+											{this.props.match.params.id} posted this{" "}
+											{formatDistanceToNow(new Date(job.publication_date))} ago
 										</Card.Subtitle>
 										<Card.Text>{job.category}</Card.Text>
 										<Card.Text dangerouslySetInnerHTML={{ __html: job.description }}></Card.Text>
-										<br />
-
-										{/* <span>
-												<input
-													type='checkbox'
-													id={job.id}
-													name='favourites'
-													value={job.company_name}
-													onClick={(e) => {
-														this.handleCheck(e);
-													}}
-												/>
-												Favourite
-											</span> */}
 									</Card.Body>
 								</Card>
 							</Col>
-					</Row>
-						))}
+						</Row>
+					))}
 				</Container>
 			</div>
 		);
