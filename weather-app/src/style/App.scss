@@ -1,7 +1,8 @@
 body {
   text-align: center;
     background-color: #282c34;
-  color: white;
+  color: black;
+  overflow: hidden;
 }
 
 // .App-logo {
@@ -45,4 +46,10 @@ padding: none;
 position: fixed; /* optional depending on what you want to do in your app */
 
 
+}
+.searchInput{
+  font-family: inherit;
+}
+.searchInput:focus{
+outline:none
 }

@@ -1,16 +1,34 @@
-export const Weather = (searchResult: any) => {
-	console.log(searchResult,"hnng")
+import { ResponseInterface } from "../store/types";
+import unknown from "../style/icons/unknown.png";
+
+export const Weather = (searchResult: ResponseInterface) => {
 	return (
-		<div className=''>
+		<div>
 			<div key={searchResult.id}>
-				{/* <img alt='' src={searchResult.album.cover_small} /> */}
+				<img
+					style={{ width: "30px" }}
+					alt={`icon`}
+					src={window.location.origin + `/` + searchResult.weather[0].icon + `.png`}
+				/>
+				<br />
 				<b>{searchResult.name} </b>
-				<small> in <i>{searchResult.sys.country}</i></small>
+				<small>
+					{" "}
+					in <i>{searchResult.sys.country}</i>
+				</small>
+				<br />
+				<b>Temperature</b>
+				<small>
+					{" "}
+					is <i>{searchResult.main.temp} °C</i>
+				</small>
 				<br />
 				<b>{searchResult.weather[0].main} </b>
-				<small> lots of <i>{searchResult.weather[0].description}</i></small>
-				<hr />
-	
+				<small>
+					{" "}
+					currently <i>{searchResult.weather[0].description}</i>
+					{"  "}
+				</small>
 			</div>
 		</div>
 	);

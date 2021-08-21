@@ -23,3 +23,14 @@ export const jobReducer = (state = initialState.jobs, action) => {
 			return state;
 	}
 };
+
+export const loadingReducer = (state = initialState.loading, action) =>{
+	switch (action.type){
+		case "LOADING":
+	return true
+
+			default:
+				return state;
+			
+	}
+}

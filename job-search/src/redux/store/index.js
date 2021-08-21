@@ -1,5 +1,5 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
-import {favReducer, jobReducer} from '../reducers'
+import {favReducer, jobReducer, loadingReducer } from '../reducers'
 import thunk from "redux-thunk";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -7,12 +7,14 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const initialState = {
   favourites: [],
-  jobs: {}
+  jobs: {},
+  loading: false
 }
 
 const sonicReducer = combineReducers({
 favourites: favReducer,
-jobs: jobReducer
+jobs: jobReducer,
+loading: loadingReducer
 })
 
 export const configureStore = createStore(
