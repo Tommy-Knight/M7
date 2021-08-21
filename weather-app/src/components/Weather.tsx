@@ -1,5 +1,7 @@
 import { ResponseInterface } from "../store/types";
-import unknown from "../style/icons/unknown.png";
+import format from "date-fns/format";
+
+import fromUnixTime from "date-fns/fromUnixTime";
 
 export const Weather = (searchResult: ResponseInterface) => {
 	return (
@@ -17,6 +19,10 @@ export const Weather = (searchResult: ResponseInterface) => {
 					in <i>{searchResult.sys.country}</i>
 				</small>
 				<br />
+				<b>Sunrise</b> <small>{format(new Date(fromUnixTime(searchResult.sys.sunrise).toString()), `p`)}</small>
+				<br />
+				<b>Sunset</b> <small>{format(new Date(fromUnixTime(searchResult.sys.sunset).toString()), `p`)}</small>
+				<br />
 				<b>Temperature</b>
 				<small>
 					{" "}
@@ -27,7 +33,6 @@ export const Weather = (searchResult: ResponseInterface) => {
 				<small>
 					{" "}
 					currently <i>{searchResult.weather[0].description}</i>
-					{"  "}
 				</small>
 			</div>
 		</div>

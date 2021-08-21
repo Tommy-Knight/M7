@@ -8,7 +8,7 @@ class App extends React.Component {
 		return (
 			<Router>
 				<Switch>
-					<Route path='/' render={(routeProps) => <Search {...routeProps} />} />
+					<Route path='/' render={(routeProps:any) => <Search {...routeProps} />} />
 				</Switch>
 			</Router>
 		);
